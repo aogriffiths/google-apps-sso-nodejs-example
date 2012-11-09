@@ -1,0 +1,39 @@
+<!-- LISTING MANIFEST
+     Configures pricing levels and Checkout account. -->
+<ListingManifest>
+  <SubListings>
+    <!-- SUBLISTING
+         Configures a pricing level. Add one <SubListing> tag for each
+         pricing option. Pricing options do not always map 1:1 to editions.
+         editionId - use only when <PaymentModel> is FREE. Use a value from
+         the id attribute of an <Edition> tag in the application manifest.
+         <PaymentModel> - FREE or PAID.
+         <SeatCount> - Optional. Use only if <PaymentModel> is FREE. Specify how many
+           user licenses are included if the buyer chooses this sublisting.
+           For PAID editions, use seatCount in the shopping cart instead.
+         <PurchaseUrl> - URL of your shopping web page. Use only when
+           PaymentModel is PAID. &edition= is optional and is used to alert
+           your shopping page as to what sort of purchase is being requested. 
+    -->
+    <SubListing>
+      <DisplayName>Standard Edition Free Unlimited</DisplayName>
+      <EditionId>standard</EditionId>
+      <PaymentModel>FREE</PaymentModel>
+      <PurchaseUrl>http://google-apps-sso-nodejs-example.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
+    </SubListing>
+    <SubListing>
+      <DisplayName>Standard Edition Free 100</DisplayName>
+      <EditionId>standard</EditionId>
+      <PaymentModel>FREE</PaymentModel>
+      <SeatCount>100</SeatCount>
+      <PurchaseUrl>http://google-apps-sso-nodejs-example.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
+    </SubListing>
+    <SubListing>
+      <DisplayName>Standard Edition Paid</DisplayName>
+      <EditionId>standard</EditionId>
+      <PaymentModel>PAID</PaymentModel>
+      <PurchaseUrl>http://google-apps-sso-nodejs-example.herokuapp.com/purchase?edition=standard_paid</PurchaseUrl>
+    </SubListing>
+  </SubListings>
+
+</ListingManifest>

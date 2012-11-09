@@ -1,0 +1,40 @@
+<ApplicationManifest xmlns="http://schemas.google.com/ApplicationManifest/2009">
+
+  <!-- Support info to show in the marketplace & control panel -->
+  <Support>
+    <!-- URL for application setup as an optional redirect during the install -->
+    <Link rel="setup" href="http://google-apps-sso-nodejs-example.herokuapp.com/google/setup.php?domain=${DOMAIN_NAME}" />
+
+    <!-- URL for application configuration, accessed from the app settings page in the control panel -->
+    <Link rel="manage" href="http://google-apps-sso-nodejs-example.herokuapp.com/google/admin.php?domain=${DOMAIN_NAME}" />
+
+    <!-- URL explaining how customers get support. -->
+    <Link rel="support" href="http://google-apps-sso-nodejs-example.herokuapp.com/google/support.php" />
+
+    <!-- URL that is displayed to admins during the deletion process, to specify policies such as data retention, how to claim accounts, etc. -->
+    <Link rel="deletion-policy" href="http://google-apps-sso-nodejs-example.herokuapp.com/google/deletion-policy.php" />
+  </Support>
+
+  <!-- Name and description pulled from message bundles -->
+  <Name>google-apps-sso-nodejs-example</Name>
+  <Description>google-apps-sso-nodejs-example</Description>
+
+  <!-- Show this link in Google's universal navigation for all users -->
+  <Extension id="navLink" type="link">
+    <Name>google-apps-sso-nodejs-example</Name>
+    <Url>http://google-apps-sso-nodejs-example.herokuapp.com/?domain=${DOMAIN_NAME}</Url>
+  </Extension>
+
+  <!-- Declare our OpenID realm so our app is white listed -->
+  <Extension id="realm" type="openIdRealm">
+    <Url>http://google-apps-sso-nodejs-example.herokuapp.com</Url>
+  </Extension>
+
+  <!-- Configures the free edition -->
+  <Edition id="standard">
+    <Name>Standard Edition</Name>
+    <Extension ref="navLink"/>
+    <Extension ref="realm"/>
+  </Edition>
+
+</ApplicationManifest>
