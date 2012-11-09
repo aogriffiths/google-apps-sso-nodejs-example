@@ -5,8 +5,9 @@ html(lang="en")
   body
     h1 Welcome
     ul
-      each def in defs
-        li= a(href='/auth/initiate/#{def.name}') #{def.name} Sign In    
+      each key in defs
+        li 
+          a(href='/auth/initiate/#{key.name}') #{key.name} Sign In    
     h2 User:
     h3= user
     h2 Data:

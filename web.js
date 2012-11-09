@@ -89,7 +89,7 @@ app.get('/auth/return/:id', function(req, res) {
 
 
 app.get('/', function(req, res){
-  res.render("index.html", { user: req.user, defs: config.defs, data: JSON.stringify(req.user) });
+  res.render("index.html", { user: req.user, defs: strategy_defs, data: JSON.stringify(req.user) });
 });
 
 
