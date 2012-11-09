@@ -65,7 +65,7 @@ domain to work with! You can get one for free
 ## Instuctions
 
 ### Git fork this project:
-  $ get fork 
+  $ git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git
   This will create a local copy for you to edit. I don't recommend you push
   your changes back to github becuase the configuration files you get are 
   going to contain some private information about your Google Apps domain.
@@ -73,20 +73,24 @@ domain to work with! You can get one for free
 ### Create a Heroku app:
   $ heroku create
   You will get output like this:
-  $ a
-  $ b
-  Make a note of the name Heroku has given your app. You can always change 
-  this if you like, with a
-  $ heroku rename...
+  $ Creating big-mountain-2233... done, stack is cedar
+  $ http://still-springs-4775.herokuapp.com/...
+  Make a note of the name and URL that Heroku has given your app. You can 
+  always change this if you like, with a
+  $ heroku rename <newname>
+  
   
 ### Edit the configuration file config.js with:
   - name - any single word will do for this e.g. <my_gapps_sso>
   - realm - make this the root URL of your Heroku app e.g. 
-    http://<yourapp>.herokuapp.com
-  - google_domain - your Google Apps domain. e.g.
-    http://<your-domain>
-    
-### Puch to Heroku
+    http://still-springs-4775.herokuapp.com/
+  - domain - your Google Apps domain. e.g.
+
+### Test Locally
+  $ node web.js
+       
+
+### Push to Heroku
   Your app is now ready, to start it running on Heroku use:
   $ git push heroku master
   Navigate to http://<yourapp>.herokuapp.com to check its working.
