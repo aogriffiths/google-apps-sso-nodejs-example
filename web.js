@@ -40,16 +40,6 @@ passport.deserializeUser(function(obj, done) {
 done(null, obj);
 });
 
-
-//configure passport strategies from the config file
-var strategy_defs = config.defs;
-
-for(key in strategy_defs){
-  def = strategy_defs[key];
-  def.strategy = createStrategy(def);
-  passport.use(def.strategy);
-}
-
 var createStrategy = function(def){
   var strategy = new GoogleStrategy({
     returnURL:   def.realm + '/auth/return/' + def.name,
@@ -66,6 +56,18 @@ var createStrategy = function(def){
   strategy.name = def.name;
   return strategy;
 }
+
+//configure passport strategies from the config file
+util.debug("Loading strategies");
+var strategy_defs = config.defs;
+
+for(key in strategy_defs){
+  def = strategy_defs[key];
+  util.debug("Loading strategy: " + def.name);
+  def.strategy = createStrategy(def);
+  passport.use(def.strategy);
+}
+
 
 
 
