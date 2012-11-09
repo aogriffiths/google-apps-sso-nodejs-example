@@ -72,22 +72,22 @@ var createStrategy = function(def){
 //Redirect the user to Google for authentication.  When complete, Google
 //will redirect the user back to the application at
 ///auth/return/:id
-app.get('/auth/initiate/:id', 
-  passport.authenticate('localhost')
+app.get('/auth/initiate/:id', function(req, res) {
+  passport.authenticate(req.params.id)(req, res);
 );
 
 //Google will redirect the user to this URL after authentication.  Finish
 //the process by verifying the assertion.  If valid, the user will be
 //logged in.  Otherwise, authentication has failed.
-app.get('/auth/return/:id', 
-  passport.authenticate('localhost', { 
+app.get('/auth/return/:id', function(req, res) {
+  passport.authenticate(req.params.id, { 
     successRedirect: '/',
-    failureRedirect: '/login' })
-);
+    failureRedirect: '/login' })(req, res);
+});
 
 
 app.get('/', function(req, res){
-  res.render("index.html", { user: req.user, thing:JSON.stringify(req.user) });
+  res.render("index.html", { user: req.user, defs: config.defs, data: JSON.stringify(req.user) });
 });
 
 
