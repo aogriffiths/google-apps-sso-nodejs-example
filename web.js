@@ -76,7 +76,7 @@ for(key in strategy_defs){
 ///auth/return/:id
 app.get('/auth/initiate/:id', function(req, res) {
   passport.authenticate(req.params.id)(req, res);
-);
+});
 
 //Google will redirect the user to this URL after authentication.  Finish
 //the process by verifying the assertion.  If valid, the user will be
