@@ -3,7 +3,7 @@ var express        = require('express'),
     passport       = require('passport'),
     config         = require('./config'),
     GoogleStrategy = require('passport-google').Strategy;
-
+//cool
 util.debug("starting...");
 
 var app = express.createServer();
