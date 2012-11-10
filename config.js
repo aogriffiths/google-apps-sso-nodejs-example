@@ -8,8 +8,8 @@ config.defs = {
   },
   production: {
     name:  'production',
-    domain:'<your_google_apps_domain>',
-    realm: 'http://<your_production_heroku_app_domain>'
+    domain:'<your_production_heroku_app>.herokuapp.com',
+    realm: 'http://<your_production_heroku_app>.herokuapp.com'
   }
 };
 
