@@ -6,13 +6,13 @@ config.defs = {
     domain:'tendogs.net',
     realm: 'http://localhost:5000'
   },
-  production: {
-    name:  'production tendogs',
+  production_tendogs: {
+    name:  'production_tendogs',
     domain:'tendogs.net',
     realm: 'http://still-springs-4775.herokuapp.com/'
-  }
-  production: {
-    name:  'production newsint',
+  },
+  production_newsint: {
+    name:  'production_newsint',
     domain:'newsint.co.uk',
     realm: 'http://still-springs-4775.herokuapp.com/'
   }
