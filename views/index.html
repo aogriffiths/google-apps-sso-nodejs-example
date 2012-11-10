@@ -4,11 +4,9 @@ html(lang="en")
     title Home
   body
     h1 Welcome
-    ul
-      each key in defs
-        li 
-          a(href='/auth/initiate/#{key.name}') #{key.name} Sign In    
-    h2 User:
-    h3= user
-    h2 Data:
-    h3= data 
+    h2 Login:
+      ul
+        each def in defs
+          li= a(href='/auth/initiate/#{def.name}') #{def.name} Sign In    
+    h2 User data:
+    p= data 

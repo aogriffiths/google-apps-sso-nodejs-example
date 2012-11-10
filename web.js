@@ -6,6 +6,13 @@ var express        = require('express'),
 
 util.debug("starting...");
 
+/*
+TODO, add the openid + oauth hybrid parameters
+openid.ns.ext2 = "http://specs.openid.net/extensions/oauth/1.0"
+openid.ext2.consumer  = "www.example.com"
+openid.ext2.scope =
+ */
+
 var app = express.createServer();
 
 //configure Express
