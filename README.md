@@ -130,7 +130,7 @@ __Message 2__
 (only you've never approved a request from this app before)
 > "<your_production_heroku_app>.herokuapp.com" is asking for some 
 > information from your <your_google_apps_domain> account <your_email_address>:   
-> • Email address: <your_name> (<your_email_address>)
+> • Email address: \<your_name\> (\<your_email_address\>)
 
 There is a "Remember this approval" check box and if you tick it you won't 
 get the second message again. However, with a little extra effort you can avoid 
@@ -174,29 +174,26 @@ some details.
 and the Listing Manifest paste in the ApplicationManifest.xml and the ListingManifest.xml files which you edited earlier.
 0. Click Save and Preview. There is no need to to submit your listing for approval at this stage. 
 You can always do that later, should you develop an app that that you want to publish to the world! 
-0. To test it in your own domain, click the "Add it now" button, enter your Google Apps domain name and click go.
-0. The next screen will say something along the lines of "You have requested that the '<your app name>…' service be 
-added to your domain". Click "I agree. Continue" and your done.
-
-That's it. No need to follow the links to configure your app, if you switch to gmail now you will find it in your global navigation.
-
-
-
-  Create the 
-  
-  But don't publish it
   
 ### Add the App to your domain
-  Click x
-  You will now find the app in your universal navigation bar. Click the link
-  and you will automatically be signed in to your Heroku app. There will be no 
-  step for you to give permission...
+Following on directly from the last step above, to test your new app it in your own domain:
+
+0. Click the "Add it now" button, enter your Google Apps domain name and click go.
+0. The next screen will say something along the lines of:
+>  "You have requested that the '\<your app name\>…' service be added to your domain". 
+0. Click "I agree. Continue" and you're done.
+
+That's it. No need to follow the links to configure your app, if you switch to gmail 
+now you will find it in your global navigation. Click the link and you will automatically
+ be signed in to your Heroku app. 
 
 
-### Double check your Google Apps IdP setting
-  Navigate to `https://www.google.com/a/cpanel/<your domain>/SetupIdp`
-  and ensure the options to allow users to sign in to third party websites 
-  using OpenID is checked.
+### Problems?
+
+It it's not working as expected, double check your Google Apps IdP setting.
+Navigate to `https://www.google.com/a/cpanel/<your domain>/SetupIdp`
+and ensure the options to allow users to sign in to third party websites 
+using OpenID is checked.
   
 
   
