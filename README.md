@@ -65,21 +65,26 @@ domain to work with! You can get one for free
 Instructions PART 1 - The Basics
 --------------------------------
 
-### Git fork this project:
-    git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git
+### Fork this project
+    git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git my-google-apps-sso
 This will create a local copy for you to edit. I don't recommend you push
 your changes back to github because the configuration files you get are 
 going to contain some private information about your Google Apps domain.
 
-### Create a Heroku app:
+### Create a Heroku app
+Change directory to your fork and create a heroku app for it.
+
+    cd my-google-apps-sso
     heroku create
 
-You will get output like this:
+This will return somthing like:
+
     Creating big-mountain-2233... done, stack is cedar
     http://big-mountain-2233.herokuapp.com/...
 
 Make a note of the name and URL that Heroku has given your app. You can 
-always change this if you like, with a
+always change it with a:
+
     heroku rename <new_name>
   
   
@@ -103,13 +108,16 @@ check it's  working. If this is the first time you have tested your app you will
 __Message 1__ 
 (only if you're not already logged in to Google)
 > "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account. 
+
 > To see and approve the request, sign in.
 
 __Message 2__
 (only you've never approved a request from this app before)
 > "<your_production_heroku_app>.herokuapp.com" is asking for some 
 > information from your <your_google_apps_domain> account <your_email_address>: 
+
 > • Email address: <your_name> (<your_email_address>)
+
 There is a "Remember this approval" check box and if you tick it you won't 
 get the second message again. However, with a little extra effort you can avoid 
 getting either messages, for all users in your Google Apps domain, ever.
@@ -127,18 +135,18 @@ two messages mentioned above - your users will be silently signed on.
   
 ### Prepare the Application Manifest 
 Open ApplicatiomManifest.xml and edit the following fields:
-* Set <Name> and <Description> to something suitable to describe your app.
-* Set the <Name> and <Url> under the <Extension id="navLink" type="link">. These 
+* Set `\<Name\>` and `\<Description\>` to something suitable to describe your app.
+* Set the `\<Name\>` and `\<Url\>` under the `\<Extension id="navLink" type="link"\>`. These 
   describe the link to your Heroku app which will go in the universal nav so use 
   a name of your choice and the URL like:
   http://<yourapp>.herokuapp.com
-* Set the <Url> under <Extension id="realm" type="openIdRealm">. This should be
-  the same realm as defined in config.js. e.g. http://<yourapp>.herokuapp.com
+* Set the `\<Url\>` under `\<Extension id="realm" type="openIdRealm"\>`. This should be
+  the same realm as defined in config.js. e.g. `http://<yourapp>.herokuapp.com`
   
 ### Prepare the Listing Manifest 
-* Set the <PurchaseUrl>'s to something sensible. This is just an example so you
+* Set the `\<PurchaseUrl\>`'s to something sensible. This is just an example so you
   can make them anything
-* Set the <MerchantEmailAddress> to your Google Apps domain email address
+* Set the `\<MerchantEmailAddress\>` to your Google Apps domain email address
   
 ### Create the App in Google Market Place
 0. Navigate to your
@@ -172,7 +180,7 @@ That's it. No need to follow the links to configure your app, if you switch to g
 
 
 ### Double check your Google Apps IdP setting
-  Navigate to https://www.google.com/a/cpanel/<your domain>/SetupIdp
+  Navigate to `https://www.google.com/a/cpanel/<your domain>/SetupIdp`
   and ensure the options to allow users to sign in to third party websites 
   using OpenID is checked.
   
