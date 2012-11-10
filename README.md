@@ -18,17 +18,17 @@ well documented, to do it on AppEngine. But if your not using AppEngine
 there is a little more to do.
 
 This document will show you how to:
-- Define an App, that can be added to your Google Apps domain. (And you could
-go furthur to list it in the Google Apps Marketplace, for anyone to install on 
-their Google Apps domain.)
-- Allow that app to use OpenID to get "silent" single single on with you Google 
-Apps domain. That is to say your users will not need to explicitly approve 
-anything - if they are already signed in to Google Apps they will
-automatically get signed in to your app. (The trust has essentially been 
-established at an administrator level, when you added the app to your
-domain, in the point above.) For more information see 
-[Google Apps Marketplace SSO](https://developers.google.com/google-apps/marketplace/sso)
-- Build the app outside of the google infrastructure, i.e. not on AppEngine.
+* Define an App, that can be added to your Google Apps domain. (And you could
+  go furthur to list it in the Google Apps Marketplace, for anyone to install on 
+  their Google Apps domain.)
+* Allow that app to use OpenID to get "silent" single single on with you Google 
+  Apps domain. That is to say your users will not need to explicitly approve 
+  anything - if they are already signed in to Google Apps they will
+  automatically get signed in to your app. (The trust has essentially been 
+  established at an administrator level, when you added the app to your
+  domain, in the point above.) For more information see 
+  [Google Apps Marketplace SSO](https://developers.google.com/google-apps/marketplace/sso)
+* Build the app outside of the google infrastructure, i.e. not on AppEngine.
 
 Finally, if your interested in the exact flavour of OpenID being used to do this
 see the 
@@ -37,15 +37,15 @@ for an OpenID IDP for Google hosted domains
 
 ## Ingredients
 The principles apply to building an app in any technology but we're using:
-- node.js for the app.
-- Heroku for the hosting.
+* node.js for the app.
+* Heroku for the hosting.
 
 It uses OpenID, which you could code from scratch, but you'll save
 time and pain by using an OpenID library compatible with the Google specific 
 extensions. The ones we're using are:
-- [openid](https://github.com/havard/node-openid) for node.js. 
-- [passport](https://github.com/jaredhanson/passport) for node.js. With the strategy,
-- [passport-google](https://github.com/jaredhanson/passport-google). Which depends on,
+* [openid](https://github.com/havard/node-openid) for node.js. 
+* [passport](https://github.com/jaredhanson/passport) for node.js. With the strategy,
+* [passport-google](https://github.com/jaredhanson/passport-google). Which depends on,
 
 (also, at the time of writing
 [this fix](https://github.com/aogriffiths/node-openid/commit/d798cb4998935afbe905b58cb0ff710005b9d226)
@@ -56,86 +56,89 @@ domain to work with! You can get one for free
 [here](https://www.google.com/a/cpanel/standard/new3).
 
 ## Preparation
-0 Get a Heroku account and set up the Heroku toolbelt on your machine.
+0. Get a Heroku account and set up the Heroku toolbelt on your machine.
  Test it works and ensure your ssh keys and authentication is set up
  with Heroku. If it's the first time you've worked with Heroku you 
  may want to create a dummy app, just to check everything is working.
-0 Install node.js on your machine.
+0. Install node.js on your machine.
 
-## Instructions PART 1 - The Basics
+Instructions PART 1 - The Basics
+--------------------------------
 
 ### Git fork this project:
-  $ git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git
-  This will create a local copy for you to edit. I don't recommend you push
-  your changes back to github because the configuration files you get are 
-  going to contain some private information about your Google Apps domain.
+    git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git
+This will create a local copy for you to edit. I don't recommend you push
+your changes back to github because the configuration files you get are 
+going to contain some private information about your Google Apps domain.
 
 ### Create a Heroku app:
-  $ heroku create
-  You will get output like this:
-  $ Creating big-mountain-2233... done, stack is cedar
-  $ http://big-mountain-2233.herokuapp.com/...
-  Make a note of the name and URL that Heroku has given your app. You can 
-  always change this if you like, with a
-  $ heroku rename <new_name>
+    heroku create
+
+You will get output like this:
+    Creating big-mountain-2233... done, stack is cedar
+    http://big-mountain-2233.herokuapp.com/...
+
+Make a note of the name and URL that Heroku has given your app. You can 
+always change this if you like, with a
+    heroku rename <new_name>
   
   
 ### Edit the configuration file config.js with:
-  - name - any single word will do for this e.g. my_gapps_sso
-  - realm - make this the root URL of your Heroku app e.g. 
+* name - any single word will do for this e.g. my_gapps_sso
+* realm - make this the root URL of your Heroku app e.g. 
     http://still-springs-4775.herokuapp.com/
-  - domain - your Google Apps domain. e.g.
+* domain - your Google Apps domain. e.g.
 
 ### Test Locally
-  $ node web.js
-  Navigate to http://localhost:5000 and use the "localhost Sign In" link to 
-  check it's  working.
+    node web.js
+Navigate to http://localhost:5000 and use the "localhost Sign In" link to 
+check it's  working.
 
 ### Push to Heroku
-  Your app is now ready, to start it running on Heroku use:
-  $ git push heroku master
-  Navigate to http://<yourapp>.herokuapp.com and use the "production Sign In" link to 
-  check it's  working. If this is the first time you have tested your app you will get at least one message from Google:
+Your app is now ready, to start it running on Heroku use:
+    git push heroku master
+Navigate to http://<yourapp>.herokuapp.com and use the "production Sign In" link to 
+check it's  working. If this is the first time you have tested your app you will get at least one message from Google:
   
-  #### Message 1 
-  (only if you're not already logged in to Google)
-  "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account. 
-  To see and approve the request, sign in.
+__Message 1__ 
+(only if you're not already logged in to Google)
+> "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account. 
+> To see and approve the request, sign in.
 
-  #### Message 2
-  (only you've never approved a request from this app before)
-  "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account <your_email_address>: 
+__Message 2__
+(only you've never approved a request from this app before)
+> "<your_production_heroku_app>.herokuapp.com" is asking for some 
+> information from your <your_google_apps_domain> account <your_email_address>: 
+> • Email address: <your_name> (<your_email_address>)
+There is a "Remember this approval" check box and if you tick it you won't 
+get the second message again. However, with a little extra effort you can avoid 
+getting either messages, for all users in your Google Apps domain, ever.
   
-  • Email address: <your_name> (<your_email_address>)
-  
-  There is a "Remember this approval" check box and if you tick it you won't get the 
-  second message again. However, with a little extra effort you can avoid 
-  getting either messages, for all users in your Google Apps domain, ever.
-  
-  If you do remember an approval you can always revoke it 
-  [here](https://www.google.com/accounts/IssuedAuthSubTokens)
+If you do remember an approval you can always revoke it 
+[here](https://www.google.com/accounts/IssuedAuthSubTokens)
  
  
-## Instructions PART 2 - Full, Silent, SSO with Google Apps
+Instructions PART 2 - Full, Silent, SSO with Google Apps
+--------------------------------------------------------
 
-   This part will give you two things, firstly a link to your new app from your
-   Google universal navigation bar and secondly, if you click on it you won't get either of the 
-   two messages mentioned above - your users will be silently signed on.
+This part will give you two things, firstly a link to your new app from your
+Google universal navigation bar and secondly, if you click on it you won't get either of the 
+two messages mentioned above - your users will be silently signed on.
   
 ### Prepare the Application Manifest 
-  Open ApplicatiomManifest.xml and edit the following fields:
-  * Set <Name> and <Description> to something suitable to describe your app.
-  * Set the <Name> and <Url> under the <Extension id="navLink" type="link">. These 
+Open ApplicatiomManifest.xml and edit the following fields:
+* Set <Name> and <Description> to something suitable to describe your app.
+* Set the <Name> and <Url> under the <Extension id="navLink" type="link">. These 
   describe the link to your Heroku app which will go in the universal nav so use 
   a name of your choice and the URL like:
   http://<yourapp>.herokuapp.com
-  * Set the <Url> under <Extension id="realm" type="openIdRealm">. This should be
+* Set the <Url> under <Extension id="realm" type="openIdRealm">. This should be
   the same realm as defined in config.js. e.g. http://<yourapp>.herokuapp.com
   
 ### Prepare the Listing Manifest 
-  * Set the <PurchaseUrl>'s to something sensible. This is just an example so you
+* Set the <PurchaseUrl>'s to something sensible. This is just an example so you
   can make them anything
-  * Set the <MerchantEmailAddress> to your Google Apps domain email address
+* Set the <MerchantEmailAddress> to your Google Apps domain email address
   
 ### Create the App in Google Market Place
 0. Navigate to your
