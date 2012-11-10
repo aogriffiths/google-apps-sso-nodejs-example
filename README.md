@@ -135,18 +135,18 @@ two messages mentioned above - your users will be silently signed on.
   
 ### Prepare the Application Manifest 
 Open ApplicatiomManifest.xml and edit the following fields:
-* Set `\<Name\>` and `\<Description\>` to something suitable to describe your app.
-* Set the `\<Name\>` and `\<Url\>` under the `\<Extension id="navLink" type="link"\>`. These 
+* Set `<Name>` and `<Description>` to something suitable to describe your app.
+* Set the `<Name>` and `<Url>` under the `<Extension id="navLink" type="link">`. These 
   describe the link to your Heroku app which will go in the universal nav so use 
   a name of your choice and the URL like:
   http://<yourapp>.herokuapp.com
-* Set the `\<Url\>` under `\<Extension id="realm" type="openIdRealm"\>`. This should be
+* Set the `<Url>` under `<Extension id="realm" type="openIdRealm">`. This should be
   the same realm as defined in config.js. e.g. `http://<yourapp>.herokuapp.com`
   
 ### Prepare the Listing Manifest 
-* Set the `\<PurchaseUrl\>`'s to something sensible. This is just an example so you
+* Set the `<PurchaseUrl>`'s to something sensible. This is just an example so you
   can make them anything
-* Set the `\<MerchantEmailAddress\>` to your Google Apps domain email address
+* Set the `<MerchantEmailAddress>` to your Google Apps domain email address
   
 ### Create the App in Google Market Place
 0. Navigate to your
