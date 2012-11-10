@@ -47,6 +47,16 @@ passport.deserializeUser(function(obj, done) {
 done(null, obj);
 });
 
+
+//configure passport strategies from the config file
+var strategy_defs = config.defs;
+
+for(key in strategy_defs){
+  def = strategy_defs[key];
+  def.strategy = createStrategy(def);
+  passport.use(def.strategy);
+}
+
 var createStrategy = function(def){
   var strategy = new GoogleStrategy({
     returnURL:   def.realm + '/auth/return/' + def.name,
@@ -64,18 +74,6 @@ var createStrategy = function(def){
   return strategy;
 }
 
-//configure passport strategies from the config file
-util.debug("Loading strategies");
-var strategy_defs = config.defs;
-
-for(key in strategy_defs){
-  def = strategy_defs[key];
-  util.debug("Loading strategy: " + def.name);
-  def.strategy = createStrategy(def);
-  passport.use(def.strategy);
-}
-
-
 
 
 //Redirect the user to Google for authentication.  When complete, Google
@@ -91,12 +89,12 @@ app.get('/auth/initiate/:id', function(req, res) {
 app.get('/auth/return/:id', function(req, res) {
   passport.authenticate(req.params.id, { 
     successRedirect: '/',
-    failureRedirect: '/login' })(req, res);
+    failureRedirect: '/' })(req, res);
 });
 
 
 app.get('/', function(req, res){
-  res.render("index.html", { user: req.user, defs: strategy_defs, data: JSON.stringify(req.user) });
+  res.render("index.html", { user: req.user, defs: config.defs, data: JSON.stringify(req.user) });
 });
 
 

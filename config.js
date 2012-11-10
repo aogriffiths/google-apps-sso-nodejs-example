@@ -2,19 +2,14 @@ var config = {};
 
 config.defs = {
   localhost: {
-    name:  'localhost',
-    domain:'tendogs.net',
+    name:  'local_test',
+    domain:'<your_google_apps_domain>',
     realm: 'http://localhost:5000'
   },
-  productiontd: {
-    name:  'productiontendogs',
-    domain:'tendogs.net',
-    realm: 'http://still-springs-4775.herokuapp.com/'
-  },
-  productionni: {
-    name:  'productionnewsint',
-    domain:'newsint.co.uk',
-    realm: 'http://still-springs-4775.herokuapp.com/'
+  production: {
+    name:  'production',
+    domain:'<your_google_apps_domain>',
+    realm: 'http://<your_production_heroku_app>.herokuapp.com'
   }
 };
 
