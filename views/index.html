@@ -5,8 +5,10 @@ html(lang="en")
   body
     h1 Welcome
     h2 Login:
+    p
       ul
         each def in defs
-          li= a(href='/auth/initiate/#{def.name}') #{def.name} Sign In    
+          li
+            a(href='/auth/initiate/#{def.name}') #{def.name} Sign In    
     h2 User data:
     p= data 
