@@ -12,17 +12,17 @@ to add third party apps to your domain. A link will be put in your
 [universal navigation bar](http://support.google.com/a/bin/answer.py?hl=en&answer=172981)
 and when you follow it you are automatically signed in to the app.
 
-If your wondering how to build a third party app like this, and host it
+If you're wondering how to build a third party app like this, and host it
 anywhere you like, then this document is for you! It's not too hard, and 
 well documented, to do it on AppEngine. But if your not using AppEngine 
 there is a little more to do.
 
 This document will show you how to:
 * Define an App, that can be added to your Google Apps domain. (And you could
-  go furthur to list it in the Google Apps Marketplace, for anyone to install on 
-  their Google Apps domain.)
-* Allow that app to use OpenID to get "silent" single single on with you Google 
-  Apps domain. That is to say your users will not need to explicitly approve 
+  go furthur to list it in the Google Apps Marketplace, for anyone to install in 
+  their domain.)
+* Allow that app to use OpenID to have "silent" single single on with your Google 
+  Apps domain. In order words your users will not need to explicitly approve 
   anything - if they are already signed in to Google Apps they will
   automatically get signed in to your app. (The trust has essentially been 
   established at an administrator level, when you added the app to your
@@ -30,10 +30,10 @@ This document will show you how to:
   [Google Apps Marketplace SSO](https://developers.google.com/google-apps/marketplace/sso)
 * Build the app outside of the google infrastructure, i.e. not on AppEngine.
 
-Finally, if your interested in the exact flavour of OpenID being used to do this
-see the 
+Finally, if your interested in the exact flavour of OpenID being used, 
+see this 
 [Protocol Documentation](https://sites.google.com/site/oauthgoog/fedlogininterp/openiddiscovery)
-for an OpenID IDP for Google hosted domains
+for OpenID IdP for Google hosted domains
 
 ## Ingredients
 The principles apply to building an app in any technology but we're using:
@@ -43,24 +43,24 @@ The principles apply to building an app in any technology but we're using:
 It uses OpenID, which you could code from scratch, but you'll save
 time and pain by using an OpenID library compatible with the Google specific 
 extensions. The ones we're using are:
-* [openid](https://github.com/havard/node-openid) for node.js. 
-* [passport](https://github.com/jaredhanson/passport) for node.js. With the strategy,
-* [passport-google](https://github.com/jaredhanson/passport-google). Which depends on,
-
-(also, at the time of writing
+* [node-openid](https://github.com/havard/node-openid) for node.js. 
+* [passport](https://github.com/jaredhanson/passport) for node.js. 
+* [passport-google](https://github.com/jaredhanson/passport-google) stategy for passport.
+ 
+At the time of writing node-openid required
 [this fix](https://github.com/aogriffiths/node-openid/commit/d798cb4998935afbe905b58cb0ff710005b9d226)
-was required for openid).
+to work with Google Apps.
 
 Finally, it probably goes without saying, you're going to need a Google Apps
 domain to work with! You can get one for free 
 [here](https://www.google.com/a/cpanel/standard/new3).
 
 ## Preparation
-0. Get a Heroku account and set up the Heroku toolbelt on your machine.
- Test it works and ensure your ssh keys and authentication is set up
- with Heroku. If it's the first time you've worked with Heroku you 
+0. Get a Heroku account from [heroku.com](http://www.heroku.com/) and set up the Heroku [toolbelt](https://toolbelt.heroku.com/) on your machine.
+ Ensure your git ssh keys and authentication are correctly set up.
+ If it's the first time you've worked with Heroku you 
  may want to create a dummy app, just to check everything is working.
-0. Install node.js on your machine.
+0. Install [node.js](http://nodejs.org/).
 
 Instructions PART 1 - The Basics
 --------------------------------
@@ -68,11 +68,13 @@ Instructions PART 1 - The Basics
 ### Fork this project
     git clone git://github.com/aogriffiths/google-apps-sso-nodejs-example.git my-google-apps-sso
 This will create a local copy for you to edit. I don't recommend you push
-your changes back to github because the configuration files you get are 
-going to contain some private information about your Google Apps domain.
+your changes back to a public repo on github because your will soon be changing 
+the configuration files to contain information specific to your Google Apps domain. 
+On the otherhand, if you do make any changes to this tuotial which you think would benefit
+everyone please do push them to github and send me a pull request.
 
 ### Create a Heroku app
-Change directory to your fork and create a heroku app for it.
+Change directory to your fork and create a heroku app in it.
 
     cd my-google-apps-sso
     heroku create
@@ -82,40 +84,52 @@ This will return somthing like:
     Creating big-mountain-2233... done, stack is cedar
     http://big-mountain-2233.herokuapp.com/...
 
-Make a note of the name and URL that Heroku has given your app. You can 
-always change it with a:
+Make a note of the name and URL that Heroku has given your app. 
+
+If you don't like it You can always change it with a:
 
     heroku rename <new_name>
   
   
-### Edit the configuration file config.js with:
-* name - any single word will do for this e.g. my_gapps_sso
-* realm - make this the root URL of your Heroku app e.g. 
-    http://still-springs-4775.herokuapp.com/
-* domain - your Google Apps domain. e.g.
+### Edit the configuration file config.js
+This json stucture allows for more than one configuration. For each one there are three entries:
+* `name` - any single word will do for this e.g. my_gapps_sso
+* `realm` - make this the root URL of your Heroku app e.g. 
+    http://still-springs-4775.herokuapp.com
+* `domain` - your Google Apps domain. 
+
+The example config file has two configurations, one for testing localy, "localhost", and one
+for playing with for real "production". To get these two working you should only need to 
+change three parts
+* `<your_google_apps_domain>` - change in two places to your domain. e.g. `example.com`
+* `<your_production_heroku_app>` - e.g. `http://still-springs-4775.herokuapp.com`
+
 
 ### Test Locally
+Run:
     node web.js
-Navigate to http://localhost:5000 and use the "localhost Sign In" link to 
+Navigate to `http://localhost:5000` and use the "__localhost Sign In__" link to 
 check it's  working.
 
 ### Push to Heroku
 Your app is now ready, to start it running on Heroku use:
+    
     git push heroku master
-Navigate to http://<yourapp>.herokuapp.com and use the "production Sign In" link to 
+    
+Navigate to `http://<yourapp>.herokuapp.com` and use the "__production Sign In__" link to 
 check it's  working. If this is the first time you have tested your app you will get at least one message from Google:
   
 __Message 1__ 
-(only if you're not already logged in to Google)
-> "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account. 
 
+(only if you're not already logged in to Google)
+> "<your_production_heroku_app>.herokuapp.com" is asking for some information from your <your_google_apps_domain> account.   
 > To see and approve the request, sign in.
 
 __Message 2__
+
 (only you've never approved a request from this app before)
 > "<your_production_heroku_app>.herokuapp.com" is asking for some 
-> information from your <your_google_apps_domain> account <your_email_address>: 
-
+> information from your <your_google_apps_domain> account <your_email_address>:   
 > • Email address: <your_name> (<your_email_address>)
 
 There is a "Remember this approval" check box and if you tick it you won't 
