@@ -84,6 +84,11 @@ for(key in strategy_defs){
 app.get('/auth/initiate/:id', function(req, res) {
   passport.authenticate(req.params.id)(req, res);
 });
+//same as above but configured to work with googles universal naviation link
+// as defined in the ApplicationManifest /googlenav?domain=${DOMAIN_NAME}
+app.get('/googlenav', function(req, res) {
+  passport.authenticate("production_" + req.query["domain"])(req, res);
+});
 
 //Google will redirect the user to this URL after authentication.  Finish
 //the process by verifying the assertion.  If valid, the user will be
@@ -91,7 +96,7 @@ app.get('/auth/initiate/:id', function(req, res) {
 app.get('/auth/return/:id', function(req, res) {
   passport.authenticate(req.params.id, { 
     successRedirect: '/',
-    failureRedirect: '/login' })(req, res);
+    failureRedirect: '/' })(req, res);
 });
 
 

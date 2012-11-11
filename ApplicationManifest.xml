@@ -22,7 +22,7 @@
   <!-- Show this link in Google's universal navigation for all users -->
   <Extension id="navLink" type="link">
     <Name>google-apps-sso-nodejs-example</Name>
-    <Url>http://google-apps-sso-nodejs-example.herokuapp.com/?domain=${DOMAIN_NAME}</Url>
+    <Url>http://google-apps-sso-nodejs-example.herokuapp.com/googlenav?domain=${DOMAIN_NAME}</Url>
   </Extension>
 
   <!-- Declare our OpenID realm so our app is white listed -->
