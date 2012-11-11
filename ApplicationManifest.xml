@@ -16,18 +16,18 @@
   </Support>
 
   <!-- Name and description pulled from message bundles -->
-  <Name>google-apps-sso-nodejs-example</Name>
-  <Description>google-apps-sso-nodejs-example</Description>
+  <Name>still-springs-4775</Name>
+  <Description>still-springs-4775</Description>
 
   <!-- Show this link in Google's universal navigation for all users -->
   <Extension id="navLink" type="link">
-    <Name><your_production_heroku_app_name></Name>
-    <Url>http://<your_production_heroku_app>.herokuapp.com/googlenav?domain=${DOMAIN_NAME}</Url>
+    <Name>still-springs-4775</Name>
+    <Url>http://still-springs-4775.herokuapp.com/googlenav?domain=${DOMAIN_NAME}</Url>
   </Extension>
 
   <!-- Declare our OpenID realm so our app is white listed -->
   <Extension id="realm" type="openIdRealm">
-    <Url>http://<your_production_heroku_app>.herokuapp.com</Url>
+    <Url>http://still-springs-4775.herokuapp.com</Url>
   </Extension>
 
   <!-- Configures the free edition -->
