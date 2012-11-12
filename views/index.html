@@ -2,11 +2,19 @@ doctype 5
 html(lang="en")
   head
     title Home
-    script(type='text/javascript' src='/javascript/jquery-1.8.2.min.js') 
+    script(type='text/javascript', src="/javascript/jquery-1.8.2.min.js") 
     script(type='text/javascript')
-      $.get('/auth/initiate/default', function(data) {        
-        alert('Load was performed.');
-      });
+      ;
+      $.get('/') //auth/initiate/default
+      .success(function(a) { 
+        alert("success"); 
+      })
+      .error(function(a) { 
+        alert("error"); 
+      })
+      .complete(function(a) { 
+        alert("complete"); 
+      });  
   body
     h1 Welcome
     h2 Login:
