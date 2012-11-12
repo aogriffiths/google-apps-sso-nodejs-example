@@ -96,7 +96,6 @@ app.get('/googlenav', function(req, res) {
   passport.authenticate("production_" + req.query["domain"])(req, res);
 });
 
-/auth/initiate/
 
 //Google will redirect the user to this URL after authentication.  Finish
 //the process by verifying the assertion.  If valid, the user will be
