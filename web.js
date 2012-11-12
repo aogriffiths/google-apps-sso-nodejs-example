@@ -19,7 +19,7 @@ var app = express.createServer();
 app.configure(function() {
   app.register('.html', require('jade'));
   app.set("view options", { layout: false });
-
+  app.use(express.static(__dirname + '/public'));
   app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
