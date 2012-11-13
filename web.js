@@ -108,12 +108,23 @@ app.get('/auth/return/:id', function(req, res) {
 
 
 app.get('/', function(req, res){
-  res.render("index.html", { user: req.user, defs: config.defs, data: JSON.stringify(req.user) });
+  if(req.isAuthenticated()){
+    res.render("indexPrivate.html", {defs: config.defs, user: req.user, data: JSON.stringify(req.user) });    
+  }else{
+    res.render("indexPublic.html",  {defs: config.defs});        
+  }
 });
 
+app.get('account', ensureAuthenticated, function(req, res){
+  res.render('account.html', { data: JSON.stringify(req.user) });
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}

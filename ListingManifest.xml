@@ -19,20 +19,20 @@
       <DisplayName>Standard Edition Free Unlimited</DisplayName>
       <EditionId>standard</EditionId>
       <PaymentModel>FREE</PaymentModel>
-      <PurchaseUrl>http://still-springs-4775.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
+      <PurchaseUrl>http://<your_production_heroku_app>.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
     </SubListing>
     <SubListing>
       <DisplayName>Standard Edition Free 100</DisplayName>
       <EditionId>standard</EditionId>
       <PaymentModel>FREE</PaymentModel>
       <SeatCount>100</SeatCount>
-      <PurchaseUrl>http://still-springs-4775.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
+      <PurchaseUrl>http://<your_production_heroku_app>.herokuapp.com/purchase?edition=standard_free</PurchaseUrl>
     </SubListing>
     <SubListing>
       <DisplayName>Standard Edition Paid</DisplayName>
       <EditionId>standard</EditionId>
       <PaymentModel>PAID</PaymentModel>
-      <PurchaseUrl>http://still-springs-4775.herokuapp.com/purchase?edition=standard_paid</PurchaseUrl>
+      <PurchaseUrl>http://<your_production_heroku_app>.herokuapp.com/purchase?edition=standard_paid</PurchaseUrl>
     </SubListing>
   </SubListings>
 

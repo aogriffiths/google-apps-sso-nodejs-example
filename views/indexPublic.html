@@ -7,21 +7,15 @@ html(lang="en")
       ;
       $.get('/') //auth/initiate/default
       .success(function(a) { 
-        alert("success"); 
+        a;
       })
       .error(function(a) { 
-        alert("error"); 
+        a;
       })
       .complete(function(a) { 
-        alert("complete"); 
+        a;
       });  
   body
     h1 Welcome
     h2 Login:
-    p
-      ul
-        each def in defs
-          li
-            a(href='/auth/initiate/#{def.name}') #{def.name} Sign In    
-    h2 User data:
-    p= data 
+    iframe(src='/auth/initiate/default', style='width:100%; height:300px;')
