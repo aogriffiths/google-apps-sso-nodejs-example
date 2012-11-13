@@ -115,7 +115,7 @@ app.get('/', function(req, res){
   }
 });
 
-app.get('account', ensureAuthenticated, function(req, res){
+app.get('account', function(req, res){
   res.render('account.html', { data: JSON.stringify(req.user) });
 });
 
