@@ -91,17 +91,23 @@ If you don't like it You can always change it with a:
     heroku rename <new_name>
   
   
-### Edit the configuration file config.js
-This json stucture allows for more than one configuration. For each one there are three entries:
-* `name` - any single word will do for this e.g. my_gapps_sso
+### Create the configuration file config.js
+
+This json stucture of config.js allows for more than one configuration. Copy the example 
+from the template-files directory and edit for you own senario.  Each configuration in the
+config.defs array has three entries:
+* `name` - any single word e.g. my_gapps_sso
 * `realm` - make this the root URL of your Heroku app e.g. 
     http://still-springs-4775.herokuapp.com
 * `domain` - your Google Apps domain. 
 
+One erty needs to be made the "default" with a:
+* __default: true
+
 The example config file has two configurations, one for testing localy, "localhost", and one
 for playing with for real "production". To get these two working you should only need to 
-change three parts
-* `<your_google_apps_domain>` - change in two places to your domain. e.g. `example.com`
+change two parts
+* `<your_google_apps_domain>` - your Google apps domain. e.g. `example.com`
 * `<your_production_heroku_app>` - e.g. `http://still-springs-4775.herokuapp.com`
 
 
